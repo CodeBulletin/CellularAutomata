@@ -1,3 +1,3 @@
-# Cellular Automata
+# 1D Cellular Automata
 
-A simple GPU accelerated Cellualr Automata Simulation using SFML
+A Cellualr Automata Simulation using SFML
