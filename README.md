@@ -1,3 +1,3 @@
 # 1D Cellular Automata
 
-A Cellualr Automata Simulation using SFML
+A 1D Cellualr Automata Simulation using SFML
