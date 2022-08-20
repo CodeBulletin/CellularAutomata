@@ -8,7 +8,7 @@ static int height;
 static int ImageWidth = 192;
 static int ImageHeight = 108;
 
-static int FrameRate = 400;
+static int FrameRate = -1;
 
 
 int index = 0;
@@ -17,8 +17,9 @@ int val = 0;
 
 bool takeinput = true;
 bool showRule = false;
-bool loopMode = true;
-bool vSync = false;
+bool loopMode = false;
+bool loopRule = false;
+bool vSync = true;
 std::string Rule = "";
 
 void loop(sf::RenderWindow&, CellularAutomata1D&);
@@ -46,7 +47,7 @@ int main() {
 	if(vSync) window.setVerticalSyncEnabled(true);
 	if (FrameRate > 0) window.setFramerateLimit(FrameRate);
 
-	CellularAutomata1D cellular_automata(ImageWidth, ImageHeight, 0, true);
+	CellularAutomata1D cellular_automata(ImageWidth, ImageHeight, 0, loopRule);
 	cellular_automata.setRule(StringToInt(Rule));
 	cellular_automata.DisplaySprite.scale({ (float)width / (float)ImageWidth, (float)height / (float)ImageHeight });
 	sf::RectangleShape rs;
@@ -124,6 +125,10 @@ void eventManager(sf::Event& event, sf::RenderWindow& win, CellularAutomata1D& c
 		if (event.key.code == sf::Keyboard::Equal) {
 			cellular_automata.Reset();
 			cellular_automata.wrapArround = !cellular_automata.wrapArround;
+			index = 0;
+		}
+		if (event.key.code == sf::Keyboard::L) {
+			loopMode = !loopMode;
 			index = 0;
 		}
 		break;
